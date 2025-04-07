@@ -10,7 +10,7 @@ class Pokemon{
     public function __construct($nom="", $url="", $hp=0, $minimalAttack=0, $maximalAttack=0, $specialAttack=0, $probabilitySpecialAttack=0){
         $this->nom = $nom;
         $this->url = $url;
-        $this->hp = $hp;
+        $this->hp = max(0, $hp); // on ne peut pas avoir de points de vie négatifs
         $this->attackPokemon = new AttackPokemon($minimalAttack, $maximalAttack, $specialAttack, $probabilitySpecialAttack);
     }
     //getters and setters
