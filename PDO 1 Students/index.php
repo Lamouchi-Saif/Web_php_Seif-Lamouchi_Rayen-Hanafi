@@ -8,7 +8,7 @@ $students = $conn->query("SELECT * FROM student")->fetchAll(PDO::FETCH_ASSOC);
 <html lang="fr">
 
 <head>
-  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../essential stuff/node_modules/bootstrap/dist/css/bootstrap.min.css" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Session Manager</title>
