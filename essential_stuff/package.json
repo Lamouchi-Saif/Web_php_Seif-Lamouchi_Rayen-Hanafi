@@ -1,0 +1,23 @@
+{
+  "name": "websites",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lamouchi-Saif/Web_php_Seif-Lamouchi_Raslen-Moussa_Rayen-Hanafi.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lamouchi-Saif/Web_php_Seif-Lamouchi_Raslen-Moussa_Rayen-Hanafi/issues"
+  },
+  "homepage": "https://github.com/Lamouchi-Saif/Web_php_Seif-Lamouchi_Raslen-Moussa_Rayen-Hanafi#readme",
+  "description": "",
+  "dependencies": {
+    "bootstrap": "^5.3.5"
+  }
+}
