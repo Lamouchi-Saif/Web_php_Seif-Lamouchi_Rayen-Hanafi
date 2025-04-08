@@ -33,6 +33,12 @@ class AttackPokemon{
     public function getProbabilitySpecialAttack(){
         return $this->probabilitySpecialAttack;
     }
+
+    public function efficace($multiplier){ // on modifie l'attaque en fonction de la proie et de la faiblesse
+        //pour les combats avec types
+        $this->attackMinimal *= $multiplier;
+        $this->attackMaximal *= $multiplier;
+    }
     
 
 

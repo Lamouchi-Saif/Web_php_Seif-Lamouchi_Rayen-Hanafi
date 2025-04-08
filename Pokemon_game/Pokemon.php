@@ -1,11 +1,12 @@
 <?php
-require 'AttackPokemon.php';
+require_once 'AttackPokemon.php';
 
 class Pokemon{
-    private $nom; // nom du pokemon
-    private $url; // url de l'image
-    private $hp; // points de vie
-    private $attackPokemon;
+    protected $nom; // nom du pokemon
+    protected $url; // url de l'image
+    protected $hp; // points de vie
+    protected $attackPokemon;
+    protected $nbAttacks=0; // nombre d'attaques du pokemon pour assurer que l'efficacité est modifiée une seule fois en cas de combat entre types
 
     public function __construct($nom="", $url="", $hp=0, $minimalAttack=0, $maximalAttack=0, $specialAttack=0, $probabilitySpecialAttack=0){
         $this->nom = $nom;

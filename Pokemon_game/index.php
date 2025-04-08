@@ -1,27 +1,19 @@
 <?php
-require_once 'Pokemon.php';
-require_once 'affichage.php';
+require_once __DIR__ . '/Pokemon.php';
+require_once __DIR__ . '/affichage.php';
+require_once __DIR__ . '/fight.php';
+require_once __DIR__ . '/PokemonEau.php';
+require_once __DIR__ . '/PokemonFeu.php';
+require_once __DIR__ . '/PokemonPlante.php';
 
 $raichu = new Pokemon("Raichu", "https://img.pokemondb.net/sprites/home/normal/raichu.png", 400, 20, 100, 3, 50);
 $charizard = new Pokemon("Charizard", "https://img.pokemondb.net/sprites/home/normal/charizard.png", 500, 20, 90, 2.5, 40);
-$round = 1;
-affiche($raichu, $charizard);
-while (true) {
-    echo "<div class=\"row bg-danger-subtle border border-danger-subtle rounded-3\"><p>Round $round </p>";
-    echo "<div class=\"col bg-secondary-subtle border border-secondary-subtle rounded-3\">". $raichu->attack($charizard)."</div>";
-    echo "<div class=\"col bg-secondary-subtle border border-secondary-subtle rounded-3\">".$charizard->attack($raichu) ."</div>";
-    echo"</div>"; // fin row
-    affiche($raichu, $charizard);
-    $round++;
-    if ($raichu->isDead()) {
-        echo "<div class=\"alert alert-success\">Le Vainqueur est : <img src=\"".$charizard->getUrl()."\" alt=\"".$charizard->getNom()."\" class=\"img-fluid\"></div>";
-        break;
-    } elseif ($charizard->isDead()) {
-        echo "<div class=\"alert alert-success\">Le Vainqueur est : <img src=\"".$raichu->getUrl()."\" alt=\"".$raichu->getNom()."\" class=\"img-fluid\"></div>";
-        break;
-    }
-    echo "</div>";
-}
+
+fight($raichu, $charizard); // appel de la fonction fight avec les deux pokemons
+echo "<div class=\"alert alert-primary\">New Fight with Types</div>";
+$charizard = new PokemonFeu("Charizard", "https://img.pokemondb.net/sprites/home/normal/charizard.png", 500, 20, 90, 2.5, 40);
+$venusaur = new PokemonPlante("Venusaur", "https://img.pokemondb.net/sprites/home/normal/venusaur.png", 500, 20, 90, 2.5, 40);
+fight($charizard, $venusaur); // appel de la fonction fight avec les deux pokemons
 ?>
 <!DOCTYPE html>
 <html lang="en">
