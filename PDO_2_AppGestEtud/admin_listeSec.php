@@ -1,18 +1,18 @@
 <?php
 session_start();
 require_once 'db.php';
-require_once 'students.php';
+require_once 'sections.php';
 
-$stConn = new Student($conn);
-$students = $stConn->getAllStudents();
+$secConn = new Section($conn);
+$Sections = $secConn->getAllsection();
 
 try {
   if (isset($_POST['delete'])) {
-    $studentId = $_POST['id'];
-    if ($stConn->deleteStudent($studentId)) {
-      echo "Student deleted successfully";
+    $SectionId = $_POST['id'];
+    if ($secConn->deleteSection($SectionId)) {
+      echo "Section deleted successfully";
     } else {
-      echo "Error deleting student";
+      echo "Error deleting section";
     }
     header("Location: " . $_SERVER['PHP_SELF']);
     exit();
@@ -51,7 +51,7 @@ try {
 <body class="bg-light">
   <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
     <div class="container">
-      <a class="navbar-brand fs-3 fw-bold" href="admin.php">Student Management System</a>
+      <a class="navbar-brand fs-3 fw-bold" href="admin.php">Section Management System</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -76,41 +76,31 @@ try {
   </nav>
   <div class="container mt-4">
     <div class="card shadow p-4">
-      <h2 class="text-center mb-4">Students</h2>
+      <h2 class="text-center mb-4">Sections</h2>
       <div class="table-responsive">
-        <table id="studentTable" class="table table-bordered table-hover text-center">
+        <table id="SectionTable" class="table table-bordered table-hover text-center">
           <thead class="table-light">
             <tr>
               <th>ID</th>
-              <th>Image</th>
-              <th>Name</th>
-              <th>Birthday</th>
-              <th>Section</th>
+              <th>Designation</th>
+              <th>Description</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            <?php foreach ($students as $student): ?>
+            <?php foreach ($Sections as $Section): ?>
               <tr>
-                <td><?= htmlspecialchars($student['id']) ?></td>
+                <td><?= htmlspecialchars($Section['id']) ?></td>
+                <td><?= htmlspecialchars($Section['designation']) ?></td>
+                <td><?= htmlspecialchars($Section['description']) ?></td>
                 <td>
-                  <img src="<?= htmlspecialchars($student['image']) ?>" alt="Student image"
-                    class="rounded-circle object-fit-cover" style="width:40px; height:40px;">
-                </td>
-                <td><?= htmlspecialchars($student['name']) ?></td>
-                <td><?= htmlspecialchars($student['birthday']) ?></td>
-                <td><?= htmlspecialchars($student['section']) ?></td>
-                <td>
-                  <a href="detailEtudiant.php?id=<?= $student['id'] ?>">
-                    <img src="../PDO_1_Students/info_icone.png" alt="details" style="width:25px;" />
-                  </a>
                   <form method="POST" style="display:inline;">
-                    <input type="hidden" name="id" value="<?= $student['id'] ?>" />
+                    <input type="hidden" name="id" value="<?= $Section['id'] ?>" />
                     <button name="delete" class="btn border-0 p-0">
                       <img src="supp_icone.png" alt="Delete" style="width:30px;" />
                     </button>
                   </form>
-                  <a href="edit_student.php?id=<?= $student['id'] ?>">
+                  <a href="edit_Section.php?id=<?= $Section['id'] ?>">
                     <img src="edit_icone.png" alt="edit" style="width:35px;" />
                   </a>
                 </td>
@@ -123,24 +113,15 @@ try {
   </div>
   <script>
     $(document).ready(function() {
-      const table = $('#studentTable').DataTable({
+      $('#SectionTable').DataTable({
         dom: 'Bfrtip',
-        buttons: [
-          'copy', 'csv', 'excel', 'pdf',
-          {
-            text: '<img src="add_icone.png" alt="Ajouter étudiant" style="height:25px;">',
-            action: function() {
-              window.location.href = 'ajouter_etudiant.php';
-            }
-          }
-        ],
+        buttons: ['copy', 'csv', 'excel', 'pdf'],
         language: {
           url: "//cdn.datatables.net/plug-ins/1.13.4/i18n/fr-FR.json"
         }
       });
     });
   </script>
-
 </body>
 
 </html>

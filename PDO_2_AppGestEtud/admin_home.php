@@ -33,7 +33,7 @@ $role = $_SESSION['role'];
             <a class="nav-link" href="admin_listeEtud.php">Liste des étudiants</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Liste des sections</a>
+            <a class="nav-link" href="admin_listeSec.php">Liste des sections</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="login.php">Logout</a>
