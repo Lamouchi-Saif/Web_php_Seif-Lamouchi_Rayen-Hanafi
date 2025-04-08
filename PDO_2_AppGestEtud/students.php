@@ -23,6 +23,12 @@ class Student
     return $stmt->fetch(PDO::FETCH_ASSOC);
   }
 
+  public function getStudentBySection($section)
+  {
+    $stmt = $this->conn->query("SELECT * FROM students WHERE section = '$section'");
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
   public function addStudent($name, $birthday, $image, $section)
   {
     $stmt = $this->conn->prepare("INSERT INTO students (name, birthday, image, section) VALUES (?, ?, ?, ?)");

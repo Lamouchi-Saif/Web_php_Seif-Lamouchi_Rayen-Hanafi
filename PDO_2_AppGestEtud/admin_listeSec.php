@@ -68,7 +68,7 @@ try {
             <a class="nav-link" href="admin_listeSec.php">Liste des sections</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="login.php">Logout</a>
+            <a class="nav-link" href="logout.php">Logout</a>
           </li>
         </ul>
       </div>
@@ -100,8 +100,11 @@ try {
                       <img src="supp_icone.png" alt="Delete" style="width:30px;" />
                     </button>
                   </form>
-                  <a href="edit_Section.php?id=<?= $Section['id'] ?>">
+                  <a href="edit_section.php?id=<?= $Section['id'] ?>">
                     <img src="edit_icone.png" alt="edit" style="width:35px;" />
+                  </a>
+                  <a href="liste_EtudSec.php?id=<?= $Section['id'] ?>">
+                    <img src="liste_icon.png" alt="Liste" style="width:35px;" />
                   </a>
                 </td>
               </tr>
