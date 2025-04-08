@@ -1,18 +1,18 @@
 <?php
 session_start();
 require_once 'db.php';
-require_once 'sections.php';
+require_once 'students.php';
 
-$secConn = new Section($conn);
-$Sections = $secConn->getAllsection();
+$stConn = new Student($conn);
+$students = $stConn->getAllStudents();
 
 try {
   if (isset($_POST['delete'])) {
-    $SectionId = $_POST['id'];
-    if ($secConn->deleteSection($SectionId)) {
-      echo "Section deleted successfully";
+    $studentId = $_POST['id'];
+    if ($stConn->deleteStudent($studentId)) {
+      echo "Student deleted successfully";
     } else {
-      echo "Error deleting section";
+      echo "Error deleting student";
     }
     header("Location: " . $_SERVER['PHP_SELF']);
     exit();
@@ -51,7 +51,7 @@ try {
 <body class="bg-light">
   <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
     <div class="container">
-      <a class="navbar-brand fs-3 fw-bold" href="admin.php">Section Management System</a>
+      <a class="navbar-brand fs-3 fw-bold" href="admin.php">Student Management System</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -59,13 +59,13 @@ try {
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav fs-4">
           <li class="nav-item">
-            <a class="nav-link" href="admin_home.php">Home</a>
+            <a class="nav-link" href="home.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="admin_listeEtud.php">Liste des étudiants</a>
+            <a class="nav-link active" href="liste_Etudiant.php">Liste des étudiants</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="admin_listeSec.php">Liste des sections</a>
+            <a class="nav-link" href="liste_Section.php">Liste des sections</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="logout.php">Logout</a>
@@ -76,36 +76,45 @@ try {
   </nav>
   <div class="container mt-4">
     <div class="card shadow p-4">
-      <h2 class="text-center mb-4">Sections</h2>
+      <h2 class="text-center mb-4">Students</h2>
       <div class="table-responsive">
-        <table id="SectionTable" class="table table-bordered table-hover text-center">
+        <table id="studentTable" class="table table-bordered table-hover text-center">
           <thead class="table-light">
             <tr>
               <th>ID</th>
-              <th>Designation</th>
-              <th>Description</th>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Birthday</th>
+              <th>Section</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            <?php foreach ($Sections as $Section): ?>
+            <?php foreach ($students as $student): ?>
               <tr>
-                <td><?= htmlspecialchars($Section['id']) ?></td>
-                <td><?= htmlspecialchars($Section['designation']) ?></td>
-                <td><?= htmlspecialchars($Section['description']) ?></td>
+                <td><?= htmlspecialchars($student['id']) ?></td>
                 <td>
-                  <form method="POST" style="display:inline;">
-                    <input type="hidden" name="id" value="<?= $Section['id'] ?>" />
-                    <button name="delete" class="btn border-0 p-0">
-                      <img src="supp_icone.png" alt="Delete" style="width:30px;" />
-                    </button>
-                  </form>
-                  <a href="edit_section.php?id=<?= $Section['id'] ?>">
-                    <img src="edit_icone.png" alt="edit" style="width:35px;" />
+                  <img src="<?= htmlspecialchars($student['image']) ?>" alt="Student image"
+                    class="rounded-circle object-fit-cover" style="width:40px; height:40px;">
+                </td>
+                <td><?= htmlspecialchars($student['name']) ?></td>
+                <td><?= htmlspecialchars($student['birthday']) ?></td>
+                <td><?= htmlspecialchars($student['section']) ?></td>
+                <td>
+                  <a href="detailEtudiant.php?id=<?= $student['id'] ?>">
+                    <img src="info_icone.png" alt="details" style="width:25px;" />
                   </a>
-                  <a href="liste_EtudSec.php?id=<?= $Section['id'] ?>">
-                    <img src="liste_icon.png" alt="Liste" style="width:35px;" />
-                  </a>
+                  <?php if ($_SESSION['role'] === 'admin'): ?>
+                    <form method="POST" style="display:inline;">
+                      <input type="hidden" name="id" value="<?= $student['id'] ?>" />
+                      <button name="delete" class="btn border-0 p-0">
+                        <img src="supp_icone.png" alt="Delete" style="width:30px;" />
+                      </button>
+                    </form>
+                    <a href="edit_student.php?id=<?= $student['id'] ?>">
+                      <img src="edit_icone.png" alt="edit" style="width:35px;" />
+                    </a>
+                  <?php endif; ?>
                 </td>
               </tr>
             <?php endforeach; ?>
@@ -116,15 +125,25 @@ try {
   </div>
   <script>
     $(document).ready(function() {
-      $('#SectionTable').DataTable({
+      const table = $('#studentTable').DataTable({
         dom: 'Bfrtip',
-        buttons: ['copy', 'csv', 'excel', 'pdf'],
+        buttons: [
+          'copy', 'csv', 'excel', 'pdf'
+          <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>, {
+              text: '<img src="add_icone.png" alt="Ajouter étudiant" style="height:25px;">',
+              action: function() {
+                window.location.href = 'ajouter_etudiant.php';
+              }
+            }
+          <?php endif; ?>
+        ],
         language: {
           url: "//cdn.datatables.net/plug-ins/1.13.4/i18n/fr-FR.json"
         }
       });
     });
   </script>
+
 </body>
 
 </html>

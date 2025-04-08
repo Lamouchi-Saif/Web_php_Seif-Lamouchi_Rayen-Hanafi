@@ -54,13 +54,13 @@ $students = $stConn->getStudentBySection($section['designation']);
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav fs-4">
           <li class="nav-item">
-            <a class="nav-link" href="admin_home.php">Home</a>
+            <a class="nav-link" href="home.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="admin_listeEtud.php">Liste des étudiants</a>
+            <a class="nav-link active" href="liste_Etudinat.php">Liste des étudiants</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="admin_listeSec.php">Liste des sections</a>
+            <a class="nav-link" href="liste_Section.php">Liste des sections</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="logout.php">Logout</a>
@@ -97,17 +97,19 @@ $students = $stConn->getStudentBySection($section['designation']);
                 <td><?= htmlspecialchars($student['section']) ?></td>
                 <td>
                   <a href="detailEtudiant.php?id=<?= $student['id'] ?>">
-                    <img src="../PDO_1_Students/info_icone.png" alt="details" style="width:25px;" />
+                    <img src="info_icone.png" alt="details" style="width:25px;" />
                   </a>
-                  <form method="POST" style="display:inline;">
-                    <input type="hidden" name="id" value="<?= $student['id'] ?>" />
-                    <button name="delete" class="btn border-0 p-0">
-                      <img src="supp_icone.png" alt="Delete" style="width:30px;" />
-                    </button>
-                  </form>
-                  <a href="edit_student.php?id=<?= $student['id'] ?>">
-                    <img src="edit_icone.png" alt="edit" style="width:35px;" />
-                  </a>
+                  <?php if ($_SESSION['role'] === 'admin'): ?>
+                    <form method="POST" style="display:inline;">
+                      <input type="hidden" name="id" value="<?= $student['id'] ?>" />
+                      <button name="delete" class="btn border-0 p-0">
+                        <img src="supp_icone.png" alt="Delete" style="width:30px;" />
+                      </button>
+                    </form>
+                    <a href="edit_student.php?id=<?= $student['id'] ?>">
+                      <img src="edit_icone.png" alt="edit" style="width:35px;" />
+                    </a>
+                  <?php endif; ?>
                 </td>
               </tr>
             <?php endforeach; ?>
@@ -121,13 +123,14 @@ $students = $stConn->getStudentBySection($section['designation']);
       const table = $('#studentTable').DataTable({
         dom: 'Bfrtip',
         buttons: [
-          'copy', 'csv', 'excel', 'pdf',
-          {
-            text: '<img src="add_icone.png" alt="Ajouter étudiant" style="height:25px;">',
-            action: function() {
-              window.location.href = 'ajouter_etudiant.php';
+          'copy', 'csv', 'excel', 'pdf'
+          <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>, {
+              text: '<img src="add_icone.png" alt="Ajouter étudiant" style="height:25px;">',
+              action: function() {
+                window.location.href = 'ajouter_etudiant.php';
+              }
             }
-          }
+          <?php endif; ?>
         ],
         language: {
           url: "//cdn.datatables.net/plug-ins/1.13.4/i18n/fr-FR.json"

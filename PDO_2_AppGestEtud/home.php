@@ -27,13 +27,13 @@ $role = $_SESSION['role'];
       <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
         <ul class="navbar-nav fs-4">
           <li class="nav-item">
-            <a class="nav-link" href="admin_home.php">Home</a>
+            <a class="nav-link" href="home.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="admin_listeEtud.php">Liste des étudiants</a>
+            <a class="nav-link" href="liste_Etudiant.php">Liste des étudiants</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="admin_listeSec.php">Liste des sections</a>
+            <a class="nav-link" href="liste_Section.php">Liste des sections</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="logout.php">Logout</a>

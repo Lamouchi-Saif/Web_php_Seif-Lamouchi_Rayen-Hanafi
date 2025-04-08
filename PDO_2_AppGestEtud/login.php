@@ -22,13 +22,8 @@ if (isset($_POST['login'])) {
         $_SESSION['username'] = $user['username'];
         $_SESSION['role'] = $user['role'];
 
-        if ($user['role'] == 'admin') {
-          header("Location: admin_home.php");
-          exit();
-        } else {
-          header("Location: user_home.php");
-          exit();
-        }
+        header("Location: home.php");
+        exit();
       } else {
         $error = "Login failed: Invalid email or password";
       }
