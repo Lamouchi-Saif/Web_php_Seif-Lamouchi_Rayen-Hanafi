@@ -41,8 +41,10 @@ INSERT INTO `student` (`id`, `name`, `birthday`) VALUES
 (1, 'Ahmed', '2004-02-19'),
 (2, 'Houssem', '2004-11-08'),
 (3, 'Sonia', '2004-12-01'),
-(3, 'Islem', '2004-12-07')
-(3, 'Ilyes', '2004-05-02');
+(4, 'Islem', '2004-12-07'),
+(5, 'Afra', '2008-04-18'),
+(5, 'Ala', '2008-04-10'),
+(6, 'Ilyes', '2004-05-02');
 
 --
 -- Index pour les tables déchargées
