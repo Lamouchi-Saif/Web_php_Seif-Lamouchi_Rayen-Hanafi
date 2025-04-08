@@ -2,25 +2,20 @@
 session_start();
 require_once 'db.php';
 require_once 'students.php';
+require_once 'sections.php';
 
-$stConn = new Student($conn);
-$students = $stConn->getAllStudents();
-
-try {
-  if (isset($_POST['delete'])) {
-    $studentId = $_POST['id'];
-    if ($stConn->deleteStudent($studentId)) {
-      echo "Student deleted successfully";
-    } else {
-      echo "Error deleting student";
-    }
-    header("Location: " . $_SERVER['PHP_SELF']);
-    exit();
-  }
-} catch (PDOException $e) {
-  echo "Error: " . $e->getMessage();
-  exit();
+if (!isset($_GET['id'])) {
+  echo "ID not provided";
+  header("Location: admin_listeSec.php");
+  exit;
 }
+
+$id = $_GET['id'];
+$secConn = new Section($conn);
+$section = $secConn->getSectionById($id);
+$stConn = new Student($conn);
+$students = $stConn->getStudentBySection($section['designation']);
+
 ?>
 
 <!DOCTYPE html>
