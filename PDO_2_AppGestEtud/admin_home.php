@@ -18,7 +18,7 @@ $role = $_SESSION['role'];
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light py-4">
     <div class="container">
-      <a class="navbar-brand fs-3 fw-bold" href="admin.php">Student Management System</a>
+      <a class="navbar-brand fs-3 fw-bold" href="admin_home.php">Student Management System</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -27,10 +27,10 @@ $role = $_SESSION['role'];
       <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
         <ul class="navbar-nav fs-4">
           <li class="nav-item">
-            <a class="nav-link" href="admin.php">Home</a>
+            <a class="nav-link" href="admin_home.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Liste des étudiants</a>
+            <a class="nav-link" href="admin_listeEtud.php">Liste des étudiants</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Liste des sections</a>
