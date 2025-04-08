@@ -5,7 +5,7 @@ require_once 'sections.php';
 
 if (!isset($_GET['id'])) {
   echo "ID not provided";
-  header("Location: admin_listeSec.php");
+  header("Location: liste_Section.php");
   exit;
 }
 
@@ -15,7 +15,7 @@ $section = $stconn->getsectionById($id);
 
 if (!$section) {
   echo "section not found";
-  header("Location: admin_listeSec.php");
+  header("Location: liste_Section.php");
   exit;
 }
 
@@ -24,7 +24,7 @@ if (isset($_POST['submit'])) {
   $descriptiion = htmlspecialchars($_POST['description']);
   $stconn->updateSection($id, $designation, $descriptiion);
 
-  header("Location: admin_listeSec.php");
+  header("Location: liste_Section.php");
   exit;
 }
 ?>
@@ -61,7 +61,7 @@ if (isset($_POST['submit'])) {
         </div>
       </div>
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <a href="admin_listeSec.php"><button type="button" class="btn btn-secondary me-md-2">Return</button></a>
+        <a href="liste_Section.php"><button type="button" class="btn btn-secondary me-md-2">Return</button></a>
         <button type="reset" class="btn btn-secondary me-md-2">Reset</button>
         <button type="submit" class="btn btn-primary" name="submit">Submit</button>
       </div>

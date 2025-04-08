@@ -62,7 +62,7 @@ try {
             <a class="nav-link" href="home.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="liste_Etudinat.php">Liste des étudiants</a>
+            <a class="nav-link active" href="liste_Etudiant.php">Liste des étudiants</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="liste_Section.php">Liste des sections</a>
@@ -94,8 +94,10 @@ try {
                 <td><?= htmlspecialchars($Section['designation']) ?></td>
                 <td><?= htmlspecialchars($Section['description']) ?></td>
                 <td>
+                  <a href="liste_EtudSec.php?id=<?= $Section['id'] ?>">
+                    <img src="liste_icon.png" alt="Liste" style="width:35px;" />
+                  </a>
                   <?php if ($_SESSION['role'] === 'admin'): ?>
-                    <img src="admin_icone.png" alt="Admin" style="width:35px;" />
                     <form method="POST" style="display:inline;">
                       <input type="hidden" name="id" value="<?= $Section['id'] ?>" />
                       <button name="delete" class="btn border-0 p-0">
@@ -106,10 +108,6 @@ try {
                       <img src="edit_icone.png" alt="edit" style="width:35px;" />
                     </a>
                   <?php endif; ?>
-                  <img src="user_icone.png" alt="User" style="width:35px;" />
-                  <a href="liste_EtudSec.php?id=<?= $Section['id'] ?>">
-                    <img src="liste_icon.png" alt="Liste" style="width:35px;" />
-                  </a>
                 </td>
               </tr>
             <?php endforeach; ?>

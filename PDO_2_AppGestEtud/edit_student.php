@@ -5,7 +5,7 @@ require_once 'students.php';
 
 if (!isset($_GET['id'])) {
   echo "ID not provided";
-  header("Location: admin_listeEtud.php");
+  header("Location: liste_Etudiant.php");
   exit;
 }
 
@@ -15,7 +15,7 @@ $student = $stconn->getStudentById($id);
 
 if (!$student) {
   echo "Student not found";
-  header("Location: admin_listeEtud.php");
+  header("Location: liste_Etudiant.php");
   exit;
 }
 
@@ -26,7 +26,7 @@ if (isset($_POST['submit'])) {
   $birthday = htmlspecialchars($_POST['birthday']);
   $stconn->updateStudent($id, $name, $birthday, $image, $section);
 
-  header("Location: admin_listeEtud.php");
+  header("Location: liste_Etudiant.php");
   exit;
 }
 ?>
@@ -78,7 +78,7 @@ if (isset($_POST['submit'])) {
         </div>
       </div>
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <a href="admin_listeEtud.php"><button type="button" class="btn btn-secondary me-md-2">Return</button></a>
+        <a href="liste_Etudiant.php"><button type="button" class="btn btn-secondary me-md-2">Return</button></a>
         <button type="reset" class="btn btn-secondary me-md-2">Reset</button>
         <button type="submit" class="btn btn-primary" name="submit">Submit</button>
       </div>

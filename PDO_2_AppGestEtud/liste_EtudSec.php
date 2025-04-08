@@ -6,7 +6,7 @@ require_once 'sections.php';
 
 if (!isset($_GET['id'])) {
   echo "ID not provided";
-  header("Location: admin_listeSec.php");
+  header("Location: liste_Section.php");
   exit;
 }
 

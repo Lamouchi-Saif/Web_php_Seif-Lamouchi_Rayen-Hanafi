@@ -40,7 +40,6 @@ if (!$student) {
       <div class="col-lg-8">
         <div class="card shadow">
           <div class="row g-0">
-            <!-- Student Image -->
             <div class="col-md-5 text-center p-4">
               <div class="student-image-container">
                 <img src="<?= htmlspecialchars($student['image']) ?>"
@@ -50,7 +49,6 @@ if (!$student) {
               </div>
             </div>
 
-            <!-- Student Details -->
             <div class="col-md-7">
               <div class="card-body">
                 <h2 class="card-title text-center mb-4"><?= htmlspecialchars($student['name']) ?></h2>
@@ -73,7 +71,7 @@ if (!$student) {
                 </div>
 
                 <div class="text-center mt-4">
-                  <a href="admin_listeEtud.php" class="btn btn-secondary">Return</a>
+                  <a href="liste_Etudiant.php" class="btn btn-secondary">Return</a>
                 </div>
               </div>
             </div>
