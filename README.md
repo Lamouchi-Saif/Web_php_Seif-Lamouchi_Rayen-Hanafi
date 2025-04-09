@@ -1,5 +1,5 @@
 ########## TP PHP ############
 
-####### Realisé Par (RT_2/1): 
-- Rayen Hanafi
-- Seif Lamouchi
+####### Realisé Par : 
+- Rayen Hanafi RT2/2 
+- Seif Lamouchi RT2/1
